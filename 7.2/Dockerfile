@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libmagickwand-dev --no-install-recommends \
     libzip-dev \
-    procps
+    procps \
+    librabbitmq-dev \
+    libssh-dev
 
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install mbstring \
@@ -33,10 +35,14 @@ RUN docker-php-ext-configure intl \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install pcntl \
+    && docker-php-ext-install sockets \
     && pecl install imagick  \
     && docker-php-ext-enable imagick \
     && pecl install apcu \
     && docker-php-ext-enable apcu
+
+RUN pecl install amqp \
+    docker-php-ext-enable amqp
 
 ENV PHPREDIS_VERSION 3.1.4
 
