@@ -18,7 +18,14 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     procps \
     librabbitmq-dev \
-    libssh-dev
+    libssh-dev \
+    libxrender1 \
+    libfontconfig1 \
+    libpcre3-dev \
+    libbz2-dev \
+    zip \
+    unzip \
+    libxslt-dev
 
 RUN pecl install mcrypt-1.0.2
 
@@ -46,7 +53,9 @@ RUN pecl install amqp \
     docker-php-ext-enable amqp
 
 RUN apt-get install -y autoconf pkg-config libssl-dev
-RUN pecl install mongodb-1.5.3
+RUN pecl install mongodb
+
+RUN docker-php-ext-enable mongodb
 
 ENV PHPREDIS_VERSION 3.1.4
 
