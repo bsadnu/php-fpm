@@ -12,8 +12,6 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     git \
     vim \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
     libmcrypt-dev \
     zlib1g-dev \
     libmagickwand-dev --no-install-recommends \
@@ -21,6 +19,8 @@ RUN apt-get update && apt-get install -y \
     procps \
     librabbitmq-dev \
     libssh-dev
+
+RUN pecl install mcrypt-1.0.2
 
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install mbstring \
@@ -39,10 +39,14 @@ RUN docker-php-ext-configure intl \
     && pecl install imagick  \
     && docker-php-ext-enable imagick \
     && pecl install apcu \
-    && docker-php-ext-enable apcu
+    && docker-php-ext-install iconv \
+    && docker-php-ext-enable mcrypt
 
 RUN pecl install amqp \
     docker-php-ext-enable amqp
+
+RUN apt-get install -y autoconf pkg-config libssl-dev
+RUN pecl install mongodb-1.5.3
 
 ENV PHPREDIS_VERSION 3.1.4
 
