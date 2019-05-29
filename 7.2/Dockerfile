@@ -59,6 +59,8 @@ RUN docker-php-ext-enable mongodb
 
 RUN pecl install ds
 
+RUN docker-php-ext-enable ds
+
 ENV PHPREDIS_VERSION 3.1.4
 
 RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz  \
