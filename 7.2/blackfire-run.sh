@@ -12,5 +12,3 @@ done
 
 blackfire-agent --register
 /etc/init.d/blackfire-agent restart
-
-/bin/bash /run.sh
