@@ -89,10 +89,6 @@ EXPOSE 9000
 
 WORKDIR /app
 
-ENV BLACKFIRE_LOG_LEVEL 1
-ENV BLACKFIRE_LOG_FILE /tmpfs/logs/blackfire.log
-ENV BLACKFIRE_SOCKET unix:///var/run/blackfire/agent.sock
-
 RUN apt-get install -y \
     wget \
     gnupg2
