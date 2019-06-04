@@ -100,3 +100,6 @@ RUN apt-get update
 
 RUN apt-get install -y \
     blackfire-php
+
+RUN apt-get install -y \
+    blackfire-agent
